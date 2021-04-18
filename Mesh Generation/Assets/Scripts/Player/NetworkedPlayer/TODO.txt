@@ -1,0 +1,1 @@
+I just copy-pasted these files, they arent ready to use and some like player weapon arent even set up for networking
