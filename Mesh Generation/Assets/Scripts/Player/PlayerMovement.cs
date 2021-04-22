@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Runs every physics update
-    void FixedUpdate() {
+    void FixedUpdate() {//maybe use AddForce instead so it still used the rigidbody
         Move();
         Rotate();
     }
@@ -51,7 +51,8 @@ public class PlayerMovement : MonoBehaviour
     void Move() {
         if(velocity != Vector3.zero) {
             //moves the rigidbody while checking for physics interactions
-            playerRigidbody.MovePosition(playerRigidbody.position + velocity * Time.fixedDeltaTime);
+            //playerRigidbody.MovePosition(playerRigidbody.position + velocity * Time.fixedDeltaTime);
+            transform.Translate(velocity/8, Space.World);
         }
         if(jetpackForce != Vector3.zero) {
 
@@ -61,7 +62,10 @@ public class PlayerMovement : MonoBehaviour
 
     //rotate the player body and camera
     void Rotate() {
-        playerRigidbody.MoveRotation(playerRigidbody.rotation * Quaternion.Euler(rotation));//Quaternion.Lerp(rigidbody.rotation, (rigidbody.rotation * Quaternion.Euler(rotation)), Time.deltaTime * 15));
+        //Right/Left Movement
+        //playerRigidbody.MoveRotation(playerRigidbody.rotation * Quaternion.Euler(rotation));
+        transform.Rotate(rotation);
+        //Up/Down Movement
         if(playerCamera != null) {
             //set camera rotation and clamp it within the limits
             currCameraRotationX -= cameraRotationX;

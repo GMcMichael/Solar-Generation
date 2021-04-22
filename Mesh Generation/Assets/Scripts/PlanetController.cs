@@ -26,6 +26,9 @@ public class PlanetController : MonoBehaviour
         distFromCenter = dist;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
     public int getDist()
     {
         return distFromCenter;

@@ -7,19 +7,27 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
 {
     private static List<Transform> planets;
     private Transform currPlanet;
+    private Transform oldParent;
     public static int distance = 1000;//the distance is to small at 100 if the planet radius is 500
     public static int buffer = 10;
     [SerializeField]
     private bool player = false;
+    private float planetRotationSpeed;
+    [SerializeField]
+    private bool vehicle = false;
     private PlayerController playerController;
+    private SpaceshipMovement spaceshipMovement;
     private Rigidbody rb;
     private bool disableRotation = false;
+    private Vector3 lastPosition;
+    private Quaternion lastRotation;
 
     private void Start()
     {
         planets = new List<Transform>();
         rb = GetComponent<Rigidbody>();
         if (player) playerController = GetComponent<PlayerController>();
+        if(vehicle) spaceshipMovement = GetComponent<SpaceshipMovement>();
         StartCoroutine(LateStart(0.01f));
     }
 
@@ -42,12 +50,13 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
             if (dist > (distance + buffer))
             {
                 currPlanet = null;
-                //transform.parent = null;
+                transform.parent = oldParent;
                 if (player) playerController.SetPlanet(null);
+                if(vehicle) spaceshipMovement.OnPlanet(null);
+                
             }
             else
             {
-                //transform.parent = currPlanet;
                 Orientate();
                 return;
             }
@@ -57,8 +66,12 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
             if(dist <= distance)
             {
                 currPlanet = planets[i];
+                planetRotationSpeed = currPlanet.GetComponent<PlanetController>().getSpeed();
                 Orientate();
                 if (player) playerController.SetPlanet(currPlanet);
+                if(vehicle) spaceshipMovement.OnPlanet(currPlanet);
+                oldParent = transform.parent;
+                transform.parent = currPlanet;
                 return;
             }
         }

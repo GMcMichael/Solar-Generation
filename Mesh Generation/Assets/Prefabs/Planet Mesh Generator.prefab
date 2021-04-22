@@ -194,6 +194,7 @@ MonoBehaviour:
   moveTerrain: 0
   RanomizeTerrain: 0
   RanomizeCenter: 0
+  LandRequirement: 5
 --- !u!114 &5957651729327735583
 MonoBehaviour:
   m_ObjectHideFlags: 0

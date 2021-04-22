@@ -19,7 +19,6 @@ public class ShipManager : MonoBehaviour
     private bool doorDown;
     private bool usingVehicle;
     private Transform vehicleWheel;
-    //private VehicleController vehicle;
     private SpaceshipMovement vehicle;
     private Transform lastVehicle;
     private OrientateToPlanet orientateToPlanet;
@@ -41,8 +40,7 @@ public class ShipManager : MonoBehaviour
         warpObjects = new List<GameObject>();
     }
 
-    void Update()
-    {
+    void Update() {//All movement should probably be moved to the vehicles controlling script
         RaycastHit hit;
         if (usingVehicle) {
             if (Input.GetKeyDown(KeyCode.E))//stop driving
@@ -88,7 +86,7 @@ public class ShipManager : MonoBehaviour
                 }
                 else if (name.Equals("Steering Wheel"))
                 {
-                    vehicle = hit.collider.transform.root.GetComponent<SpaceshipMovement>();//<VehicleController>();
+                    vehicle = GetVehicle(hit.collider.transform.root);
                     lastVehicle = hit.collider.transform;
                     //stop the player movment
                     usingVehicle = true;
@@ -114,6 +112,11 @@ public class ShipManager : MonoBehaviour
         {
             player.position = lastVehicle.position;
         }
+    }
+
+    private SpaceshipMovement GetVehicle(Transform root) {
+        if(!root.name.Equals("Spaceship")) root = root.Find("Spaceship");
+        return root.GetComponent<SpaceshipMovement>();
     }
 
     private void WarpForward()//need to child the ship to the planet in some script
