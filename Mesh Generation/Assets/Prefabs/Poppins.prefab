@@ -590,6 +590,7 @@ GameObject:
   - component: {fileID: 545215087}
   - component: {fileID: 4145116976788821738}
   - component: {fileID: 7075212477136029938}
+  - component: {fileID: 590935917}
   m_Layer: 10
   m_Name: Poppins
   m_TagString: Player
@@ -737,7 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aedd75ddc2652344bfff13b1c41474f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 1
   sprintingMultiplier: 2
   mouseSensitivity: 10
   jetpackForce: 2000
@@ -835,6 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 1
+  vehicle: 0
 --- !u!114 &4145116976788821738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,8 +876,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   lr: {fileID: 6119837718423130057}
-  sphere1: {fileID: 0}
-  sphere2: {fileID: 0}
+--- !u!114 &590935917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568397285103687144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1d76098cc02e0478fdd73626c87d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1568397285227862829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,7 +1361,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!1 &4625122117367324448
 GameObject:

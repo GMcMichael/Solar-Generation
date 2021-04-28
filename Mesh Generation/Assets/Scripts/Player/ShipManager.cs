@@ -108,7 +108,7 @@ public class ShipManager : MonoBehaviour
                 }
             }
         } 
-        else if(Input.GetKeyDown(KeyCode.R))
+        else if(Input.GetKeyDown(KeyCode.F))//teleport back to vehicle
         {
             player.position = lastVehicle.position;
         }

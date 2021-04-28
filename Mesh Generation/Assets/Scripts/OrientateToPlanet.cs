@@ -12,7 +12,6 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
     public static int buffer = 10;
     [SerializeField]
     private bool player = false;
-    private float planetRotationSpeed;
     [SerializeField]
     private bool vehicle = false;
     private PlayerController playerController;
@@ -66,7 +65,6 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
             if(dist <= distance)
             {
                 currPlanet = planets[i];
-                planetRotationSpeed = currPlanet.GetComponent<PlanetController>().getSpeed();
                 Orientate();
                 if (player) playerController.SetPlanet(currPlanet);
                 if(vehicle) spaceshipMovement.OnPlanet(currPlanet);
@@ -81,7 +79,8 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
     {
         if (disableRotation) return;
         Vector3 planetDir = currPlanet.position - transform.position;
-        rb.rotation = Quaternion.FromToRotation(transform.up, -planetDir) * transform.rotation;
+        transform.rotation = Quaternion.FromToRotation(transform.up, -planetDir) * transform.rotation;
+        //rb.rotation = Quaternion.FromToRotation(transform.up, -planetDir) * transform.rotation;
     }
 
     public void setDisableRotation(bool x)
@@ -90,6 +89,10 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
     }
 
     public Transform getCurrPlanet() {
+        return currPlanet;
+    }
+
+    public Transform GetPlanet() {
         return currPlanet;
     }
 }

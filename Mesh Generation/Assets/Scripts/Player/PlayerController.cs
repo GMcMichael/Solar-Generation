@@ -53,17 +53,19 @@ public class PlayerController : MonoBehaviour
             cursorLocked = !cursorLocked;
         } else if(Input.GetKeyDown(KeyCode.Escape)) Application.Quit();//close the game
 
-        //raycast for joint height and interacting
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, jointConnectMask))
-        {
-            //set joint connectedAnchor to just above hit position
-            joint.connectedAnchor = hit.point + ((transform.position - hit.point).normalized) * floatHeight;
-        }
-
         //calculate movment velocity as 3D vector
         float xMove = Input.GetAxisRaw("Horizontal");
         float zMove = Input.GetAxisRaw("Vertical");
+
+        if(xMove != 0 || zMove != 0) {
+            //raycast for joint height and interacting
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, jointConnectMask))
+            {
+                //set joint connectedAnchor to just above hit position
+                joint.connectedAnchor = hit.point + ((transform.position - hit.point).normalized) * floatHeight;
+            }
+        }
 
         //check for sprinting
         if(Input.GetKey(KeyCode.LeftShift)) {
@@ -95,11 +97,10 @@ public class PlayerController : MonoBehaviour
         movement.SetCameraRotation(cameraRotationX);
 
         //apply jetpack force
-        Vector3 _jetpackForce = Vector3.zero;
+        float _jetpackForce = 0;
         //check for jumping
         if(Input.GetButton("Jump")) {//change jetpack key later so you can jump and fly
-
-            _jetpackForce = joint.connectedAnchor.normalized * jetpackForce;
+            _jetpackForce = jetpackForce;
             setJointSettings(0);
         } else {
             setJointSettings(jointSpring);

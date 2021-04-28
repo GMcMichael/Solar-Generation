@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 rotation = Vector3.zero;
     private float cameraRotationX = 0f;
     private float currCameraRotationX = 0;
-    private Vector3 jetpackForce = Vector3.zero;
+    private float jetpackForce = 0;
 
     [SerializeField]
     private float cameraRotationLimit = 65f;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //sets the jetpack force vector
-    public void SetJetpackForce(Vector3 _jetpackForce) {
+    public void SetJetpackForce(float _jetpackForce) {
         jetpackForce = _jetpackForce;
     }
 
@@ -54,9 +54,8 @@ public class PlayerMovement : MonoBehaviour
             //playerRigidbody.MovePosition(playerRigidbody.position + velocity * Time.fixedDeltaTime);
             transform.Translate(velocity/8, Space.World);
         }
-        if(jetpackForce != Vector3.zero) {
-
-            playerRigidbody.AddForce(jetpackForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+        if(jetpackForce != 0) {
+            playerRigidbody.AddForce(transform.up * jetpackForce * Time.fixedDeltaTime, ForceMode.Acceleration);
         }
     }
 

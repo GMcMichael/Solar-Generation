@@ -12,6 +12,11 @@ public class LaserManager : MonoBehaviour
     private LayerMask interactMask;
     [SerializeField]
     private LineRenderer lr;
+    private ResourceInventory inventory;
+
+    void Start() {
+        inventory = GetComponent<ResourceInventory>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -43,7 +48,7 @@ public class LaserManager : MonoBehaviour
             }
             if (interactMask == (interactMask | (1 << hit.transform.gameObject.layer)))
             {
-                //hit.transform.GetComponent<SCRIPTNAME>().Interact();
+                hit.transform.parent.GetComponent<InteractionManager>().Interact(inventory);
             }
         } else
         {

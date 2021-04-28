@@ -23,6 +23,10 @@ public class BuildingMenu : MonoBehaviour
     private Image[] menuImages = new Image[7];
     private int currPrefab;
     private GameObject previewObject;
+    [SerializeField]
+    private OrientateToPlanet orientateToPlanet;
+    [SerializeField]
+    private int RotateSpeed = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +43,17 @@ public class BuildingMenu : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.X) || (Input.GetAxis("Mouse ScrollWheel") > 0f)) currPrefab--;
-        else if (Input.GetKeyDown(KeyCode.C) || (Input.GetAxis("Mouse ScrollWheel") < 0f)) currPrefab++;
-        
-        if (currPrefab < 0) currPrefab = prefabs.Length - 1;
-        else if (currPrefab > prefabs.Length - 1) currPrefab = 0;
+        int ScrollAmount = 0;
+        if (Input.GetKeyDown(KeyCode.X) || (Input.GetAxis("Mouse ScrollWheel") > 0f)) ScrollAmount--;
+        else if (Input.GetKeyDown(KeyCode.C) || (Input.GetAxis("Mouse ScrollWheel") < 0f)) ScrollAmount++;
+
+        if(Input.GetKey(KeyCode.R)) {
+            previewObject.transform.Rotate(previewObject.transform.up, ScrollAmount*RotateSpeed);
+        } else {
+            currPrefab += ScrollAmount;
+            if (currPrefab < 0) currPrefab = prefabs.Length - 1;
+            else if (currPrefab > prefabs.Length - 1) currPrefab = 0;
+        }
 
         UpdateMenu();
 
@@ -77,13 +87,13 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    private void DisplayPreview()//to build object get the rotation of the preview and then make a real one.
-    {//need to rotate the object somehow here
+    private void DisplayPreview() {//need to rotate the object somehow here
         if (displayed && !previewObject.name.Equals(prefabs[currPrefab].name + "(Clone)")) StopPreview();
         if (!displayed) {
             displayed = true;
             previewObject = Instantiate(prefabs[currPrefab]);
             previewObject.GetComponent<Collider>().enabled = false;
+            previewObject.GetComponent<OrientateToPlanet>().enabled = true;
         }
         RaycastHit hit;
         if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.TransformDirection(Vector3.forward), out hit, buildDistance, buildMask)) previewObject.transform.position = hit.point;
@@ -96,8 +106,13 @@ public class BuildingMenu : MonoBehaviour
         displayed = false;
     }
 
-    private void BuildPrefab()//check requirements for building here
+    private void BuildPrefab()
     {
-        
+        //check requirements for building here
+        if(!false) {//can build
+            ToggleMenu();
+            Instantiate(prefabs[currPrefab], previewObject.transform.position, previewObject.transform.rotation, orientateToPlanet.getCurrPlanet());
+        }
+
     }
 }
