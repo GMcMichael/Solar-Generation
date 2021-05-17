@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3583095319148018819, guid: 96b7b7dfd825c8342ab0279a0fb5c464,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b0744f2f6bcf5d54ea58ce3653768e83, type: 2}
     - target: {fileID: 4347008138690429788, guid: 96b7b7dfd825c8342ab0279a0fb5c464,
         type: 3}
       propertyPath: m_RootOrder
@@ -62,10 +67,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5627317947125267535, guid: 96b7b7dfd825c8342ab0279a0fb5c464,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b0744f2f6bcf5d54ea58ce3653768e83, type: 2}
     - target: {fileID: 7951990175178708696, guid: 96b7b7dfd825c8342ab0279a0fb5c464,
         type: 3}
       propertyPath: m_Name
       value: IronResource
       objectReference: {fileID: 0}
+    - target: {fileID: 8188458181915887944, guid: 96b7b7dfd825c8342ab0279a0fb5c464,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b0744f2f6bcf5d54ea58ce3653768e83, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96b7b7dfd825c8342ab0279a0fb5c464, type: 3}

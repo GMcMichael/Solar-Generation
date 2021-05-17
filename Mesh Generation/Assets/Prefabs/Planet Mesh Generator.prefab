@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14840f57ef1a2d04fa02338bf381200f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
+  radius: 500
   layer: 5
   noiseLayers:
   - enabled: 1
@@ -273,4 +273,6 @@ MonoBehaviour:
   - {fileID: 930063623485189098, guid: 5ce778d9db59b3c458dc4b81ed3708fc, type: 3}
   - {fileID: 7951520304745643444, guid: 8325c50766c016c459e26a877306e37c, type: 3}
   objectDensity: 5
+  resourceFertility: 3
   resourceDensity: 20
+  resourceRotation: 3

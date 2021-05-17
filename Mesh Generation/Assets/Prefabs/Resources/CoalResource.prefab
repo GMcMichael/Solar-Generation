@@ -12,11 +12,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoalResource
       objectReference: {fileID: 0}
+    - target: {fileID: 1373637794370974842, guid: 5ce778d9db59b3c458dc4b81ed3708fc,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f7d42d80a6792e4586a51ef3ce7ce77, type: 2}
+    - target: {fileID: 3218706788893344125, guid: 5ce778d9db59b3c458dc4b81ed3708fc,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f7d42d80a6792e4586a51ef3ce7ce77, type: 2}
     - target: {fileID: 3717770097120992371, guid: 5ce778d9db59b3c458dc4b81ed3708fc,
         type: 3}
       propertyPath: resourceType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5983785457905435057, guid: 5ce778d9db59b3c458dc4b81ed3708fc,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f7d42d80a6792e4586a51ef3ce7ce77, type: 2}
     - target: {fileID: 6836666270395711086, guid: 5ce778d9db59b3c458dc4b81ed3708fc,
         type: 3}
       propertyPath: m_RootOrder

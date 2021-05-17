@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1137945469962020848, guid: c23086af8bde61a4b9746a7231240b92,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1f2cbbe8dd5c204e9b2da52c22db6a3, type: 2}
     - target: {fileID: 1223223805532371710, guid: c23086af8bde61a4b9746a7231240b92,
         type: 3}
       propertyPath: resourceType
@@ -17,6 +22,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: CopperResource
       objectReference: {fileID: 0}
+    - target: {fileID: 3490795411892982519, guid: c23086af8bde61a4b9746a7231240b92,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1f2cbbe8dd5c204e9b2da52c22db6a3, type: 2}
+    - target: {fileID: 8100641536508929852, guid: c23086af8bde61a4b9746a7231240b92,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1f2cbbe8dd5c204e9b2da52c22db6a3, type: 2}
     - target: {fileID: 9043606719634938083, guid: c23086af8bde61a4b9746a7231240b92,
         type: 3}
       propertyPath: m_RootOrder
