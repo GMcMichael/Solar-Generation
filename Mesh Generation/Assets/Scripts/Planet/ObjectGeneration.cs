@@ -114,14 +114,24 @@ public class ObjectGeneration : MonoBehaviour
 
     private void InstantiateObjects()//Could call this when I get to a planet
     {
-        objects = new GameObject[objectDensity+(resourceDensity*(int)resourceFertility)];
+        objects = new GameObject[objectDensity];
+        resources = new GameObject[resourceDensity*(int)resourceFertility];
         for (int i = 0; i < objectDensity; i++)
         {
             objects[i] = SpawnObject(0, ObjectPositions[i], ObjectTypes[i]);
         }
+        List<Transform> nodeGroup = new List<Transform>();
         for (int i = 0; i < (resourceDensity*(int)resourceFertility); i++)
         {
-            objects[objectDensity+i] = SpawnObject(1, resourcePositions[i], resourceTypes[i]);
+            if(i%(int)resourceFertility == 0) {
+                foreach (var node in nodeGroup)
+                {
+                    node.GetComponent<ResourceManager>().SetNodeGroup(nodeGroup.ToArray());
+                }
+                nodeGroup = new List<Transform>();
+            }
+            resources[i] = SpawnObject(1, resourcePositions[i], resourceTypes[i]);
+            nodeGroup.Add(resources[i].transform);
         }
     }
 
@@ -146,11 +156,15 @@ public class ObjectGeneration : MonoBehaviour
         {
             Destroy(objects[i]);
         }
+        for (int i = 0; i < resources.Length; i++)
+        {
+            Destroy(resources[i]);
+        }
     }
 
     private void Rebuild()
     {
-        if (objects.Length > 0) DestroyObjects();
+        if (objects.Length > 0 || resources.Length > 0) DestroyObjects();
         InstantiateObjects();
     }
 
@@ -158,5 +172,9 @@ public class ObjectGeneration : MonoBehaviour
     {
         PlanObjects();
         Rebuild();
+    }
+
+    public GameObject[] GetResources () {
+        return resources;
     }
 }

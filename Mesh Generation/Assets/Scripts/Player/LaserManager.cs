@@ -48,7 +48,7 @@ public class LaserManager : MonoBehaviour
             }
             if (interactMask == (interactMask | (1 << hit.transform.gameObject.layer)))
             {
-                hit.transform.parent.GetComponent<InteractionManager>().Interact(inventory);
+                hit.transform.parent.GetComponent<ResourceManager>().Interact(inventory);
             }
         } else
         {
