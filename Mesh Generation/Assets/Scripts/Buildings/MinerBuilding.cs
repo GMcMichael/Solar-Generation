@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinerBuilding : MonoBehaviour//The building menu trys to disable the collider of the preview object.
-{                                         //Instead make duplicate looking objects (that dont function) without colliders, and then initalize the real ones
+public class MinerBuilding : MonoBehaviour
+{
     private GameObject[] nodes;
     [SerializeField]
-    private int SearchRange;
+    private int SearchRange = 100;
+    [SerializeField]
     private ResourceManager[] selectedNodes;
     private int currNodes = 0;
     private bool active = true;
@@ -22,6 +23,7 @@ public class MinerBuilding : MonoBehaviour//The building menu trys to disable th
 
     void Awake() {
         nodes = transform.root.GetComponent<ObjectGeneration>().GetResources();
+        selectedNodes = new ResourceManager[0];
         Transform closeNode = null;
         float nodeDist = float.MaxValue;
         foreach (var node in nodes)
@@ -56,19 +58,22 @@ public class MinerBuilding : MonoBehaviour//The building menu trys to disable th
             return;
         }
         currMiners++;
+        currNodes++;
         //drop miner to planet
         //raycast down from miner pos to planet pos
         RaycastHit hit;
         if(Physics.Raycast(miner.transform.position, -transform.up, out hit, planetMask)) {
-            miner.transform.position = hit.point + new Vector3(0, minerOffset, 0);
+            miner.transform.position = hit.point + (transform.up* minerOffset);
         }
-        miner.Activate(GetFreeNode());
+        ResourceManager node = GetFreeNode();
+        if (node != null) miner.Activate(node);
     }
 
     public void ReciveMiner(Miner miner, int inventoryAmount) {
         currMiners--;
+        currNodes--;
         inventory += inventoryAmount;
-        miner.transform.position = Vector3.zero;
+        miner.transform.position = miner.transform.parent.position;
         miner.transform.rotation = Quaternion.identity;
     }
 

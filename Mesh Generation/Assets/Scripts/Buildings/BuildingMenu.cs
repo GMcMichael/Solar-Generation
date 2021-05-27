@@ -12,11 +12,13 @@ public class BuildingMenu : MonoBehaviour
     private LayerMask buildMask;
     private bool displayed;
     [SerializeField]
-    private int buildDistance = 10;
+    private int buildDistance = 30;
     [SerializeField]
     private GameObject buildMenu;
     [SerializeField]
     private GameObject[] prefabs;
+    [SerializeField]
+    private GameObject[] displayPrefabs;
     [SerializeField]
     private Sprite[] prefabSprites;
     [SerializeField]
@@ -87,13 +89,11 @@ public class BuildingMenu : MonoBehaviour
         }
     }
 
-    private void DisplayPreview() {//need to rotate the object somehow here
-        if (displayed && !previewObject.name.Equals(prefabs[currPrefab].name + "(Clone)")) StopPreview();
+    private void DisplayPreview() {
+        if (displayed && !previewObject.name.Equals(prefabs[currPrefab].name + " Display(Clone)")) StopPreview();
         if (!displayed) {
             displayed = true;
-            previewObject = Instantiate(prefabs[currPrefab]);
-            previewObject.GetComponent<Collider>().enabled = false;
-            previewObject.GetComponent<OrientateToPlanet>().enabled = true;
+            previewObject = Instantiate(displayPrefabs[currPrefab]);
         }
         RaycastHit hit;
         if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.TransformDirection(Vector3.forward), out hit, buildDistance, buildMask)) previewObject.transform.position = hit.point;

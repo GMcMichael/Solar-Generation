@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private LayerMask jointConnectMask;
     [SerializeField]
     private int floatHeight = 2;
+    private bool jointActive = true;
 
     private PlayerMovement movement;
     private ConfigurableJoint joint;
@@ -52,12 +53,13 @@ public class PlayerController : MonoBehaviour
             }
             cursorLocked = !cursorLocked;
         } else if(Input.GetKeyDown(KeyCode.Escape)) Application.Quit();//close the game
+        else if(Input.GetKeyDown(KeyCode.P)) jointActive = !jointActive;//stop the joint
 
         //calculate movment velocity as 3D vector
         float xMove = Input.GetAxisRaw("Horizontal");
         float zMove = Input.GetAxisRaw("Vertical");
 
-        if(xMove != 0 || zMove != 0) {
+        //if(xMove != 0 || zMove != 0) {//removed so you dont float away on planets
             //raycast for joint height and interacting
             RaycastHit hit;
             if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, jointConnectMask))
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
                 //set joint connectedAnchor to just above hit position
                 joint.connectedAnchor = hit.point + ((transform.position - hit.point).normalized) * floatHeight;
             }
-        }
+        //}
 
         //check for sprinting
         if(Input.GetKey(KeyCode.LeftShift)) {
@@ -109,6 +111,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void setJointSettings(float _jointSpring) {
+        if(!jointActive) _jointSpring = 0;
         joint.yDrive = new JointDrive {
             positionSpring = _jointSpring,
             maximumForce = jointMaxForce

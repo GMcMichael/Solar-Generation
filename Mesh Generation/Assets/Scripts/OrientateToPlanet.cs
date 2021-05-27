@@ -14,6 +14,8 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
     private bool player = false;
     [SerializeField]
     private bool vehicle = false;
+    [SerializeField]
+    private bool Parent = true;
     private PlayerController playerController;
     private SpaceshipMovement spaceshipMovement;
     private Rigidbody rb;
@@ -49,7 +51,7 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
             if (dist > (distance + buffer))
             {
                 currPlanet = null;
-                transform.parent = oldParent;
+                if(Parent) transform.parent = oldParent;
                 if (player) playerController.SetPlanet(null);
                 if(vehicle) spaceshipMovement.OnPlanet(null);
                 
@@ -68,8 +70,10 @@ public class OrientateToPlanet : MonoBehaviour//maybe need to change how the ori
                 Orientate();
                 if (player) playerController.SetPlanet(currPlanet);
                 if(vehicle) spaceshipMovement.OnPlanet(currPlanet);
-                oldParent = transform.parent;
-                transform.parent = currPlanet;
+                if(Parent) {
+                    oldParent = transform.parent;
+                    transform.parent = currPlanet;
+                }
                 return;
             }
         }

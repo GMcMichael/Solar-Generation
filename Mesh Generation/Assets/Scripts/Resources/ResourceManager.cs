@@ -9,6 +9,7 @@ public class ResourceManager : MonoBehaviour
     private ResourceType resourceType;
     [SerializeField]
     private int amountAdded = 1;
+    [SerializeField]
     private Transform[] nodeGroup;
     private bool mining;
 

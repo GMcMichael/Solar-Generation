@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148789132438030087}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -31,7 +31,7 @@ Transform:
   - {fileID: 4135765779765619918}
   m_Father: {fileID: 6889563097989150459}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1346602823421187883
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346602823421187883}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.47600007, y: 0.3399999, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3399999, z: 0.4760001}
   m_LocalScale: {x: 0.311168, y: 0.155584, z: 0.45759997}
   m_Children: []
   m_Father: {fileID: 7333702388243570585}
@@ -148,14 +148,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050198587358440235}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 794583307805651867}
   m_Father: {fileID: 6889563097989150459}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &2267785223949048042
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2267785223949048042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.366, y: 0.731, z: 0}
+  m_LocalPosition: {x: 0, y: 0.731, z: 0.366}
   m_LocalScale: {x: 0.25, y: 0.5, z: 0.17}
   m_Children:
   - {fileID: 3147493299317191599}
@@ -372,7 +372,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5501631460375838178}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
@@ -455,8 +455,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryMax: 100
-  speed: 1
+  speed: 0.15
+  building: {fileID: 0}
   maxDistToTarget: 3
+  planetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  MovingOffset: 2
 --- !u!54 &5854769599136530704
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -487,6 +492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: 0
   vehicle: 0
+  Parent: 0
 --- !u!1 &6327541770120425526
 GameObject:
   m_ObjectHideFlags: 0

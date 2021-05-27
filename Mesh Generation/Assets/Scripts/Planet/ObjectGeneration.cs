@@ -124,14 +124,19 @@ public class ObjectGeneration : MonoBehaviour
         for (int i = 0; i < (resourceDensity*(int)resourceFertility); i++)
         {
             if(i%(int)resourceFertility == 0) {
-                foreach (var node in nodeGroup)
-                {
-                    node.GetComponent<ResourceManager>().SetNodeGroup(nodeGroup.ToArray());
-                }
+                addNodesGroups(nodeGroup);
                 nodeGroup = new List<Transform>();
             }
             resources[i] = SpawnObject(1, resourcePositions[i], resourceTypes[i]);
             nodeGroup.Add(resources[i].transform);
+        }
+        addNodesGroups(nodeGroup);
+    }
+
+    private void addNodesGroups(List<Transform> group) {
+        foreach (var node in group)
+        {
+            node.GetComponent<ResourceManager>().SetNodeGroup(group.ToArray());
         }
     }
 

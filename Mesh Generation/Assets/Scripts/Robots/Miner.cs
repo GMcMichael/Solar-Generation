@@ -14,22 +14,31 @@ public class Miner : MonoBehaviour
     private bool mining = false;
     private int miningSpeed;
     [SerializeField]
-    private int speed;
+    private float speed;
+    [SerializeField]
     private Transform building;
     private MinerBuilding buildingScript;
-    private Vector3 target;
+    private Transform target;
     [SerializeField]
     private int maxDistToTarget = 3;
+    [SerializeField]
+    private LayerMask planetMask;
+    [SerializeField]
+    private float MovingOffset;
     
-    void Update()
+    void Awake() {
+        buildingScript = building.GetComponent<MinerBuilding>();
+    }
+
+    void FixedUpdate()
     {
         if(!active) return;
-        if(Vector3.Distance(transform.position, target) > maxDistToTarget) {//not at target
+        if(Vector3.Distance(transform.position, target.position) > maxDistToTarget) {//not at target
             Move();
         } else {//at target
             if(mining) {
                 //mine
-                inventory++;//this is what mines, change later
+                inventory++;//this is what mines, change later to use the the nodes own script. Need timer to mine only so fast
                 if(inventory >= inventoryMax) {
                     inventory = inventoryMax;
                     mining = false;
@@ -45,21 +54,26 @@ public class Miner : MonoBehaviour
     }
 
     private void Move() {//attach orientate to planet script
+        //move to planet surface
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position - (transform.up*2), -transform.up, out hit, planetMask)) {
+            transform.position = hit.point + (transform.up*MovingOffset);
+        }
         //look at target
-        transform.LookAt(target);
+        transform.LookAt(target);//may be wrong
         //move with transform.forward to target
-        transform.Translate(transform.forward * speed, Space.Self);//may be wrong
+        transform.Translate(transform.forward * speed, Space.World);//may be wrong
     }
 
     private void SetTarget() {
         if(mining) {
             node.SetMining(true);
-            target = node.transform.position;
+            target = node.transform;
             inventoryResource = node.GetResourceType();
         }
         else {
             node.SetMining(false);
-            target = building.position;
+            target = building;
         }
     }
     public bool isActive() {
@@ -68,7 +82,7 @@ public class Miner : MonoBehaviour
 
     public void Activate(ResourceManager nextNode) {
         if(nextNode == null) {
-            Debug.LogError("Miner is reciving orders for null resource node.");
+            Debug.LogError("Miner is reciving orders for null node ResourceManager.");
             return;
         }
         node = nextNode;

@@ -1040,7 +1040,6 @@ GameObject:
   - component: {fileID: 5300873242520235745}
   - component: {fileID: 3373639947455143791}
   - component: {fileID: 4300988988511569379}
-  - component: {fileID: 8298711489445556284}
   m_Layer: 0
   m_Name: Miner
   m_TagString: Untagged
@@ -1056,7 +1055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5300873242520235744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 19.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5300873240932879848}
@@ -1097,7 +1096,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d6a3ea17fca4f44a5d7f89b52122a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SearchRange: 10
+  SearchRange: 100
+  selectedNodes: []
   Miners:
   - {fileID: 894956625240101295}
   - {fileID: 2965429719896615929}
@@ -1108,20 +1108,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   minerOffset: 2
---- !u!114 &8298711489445556284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5300873242520235744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6ea7d1cec5758145aec1d1c81a9afa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: 0
-  vehicle: 0
 --- !u!1001 &1717713671039144321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1129,6 +1115,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5300873241881788363}
     m_Modifications:
+    - target: {fileID: 1998768329779527726, guid: 2b5069ca477c9c54799e7c7d5cc2b7db,
+        type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 5300873242520235745}
     - target: {fileID: 5501631460375838178, guid: 2b5069ca477c9c54799e7c7d5cc2b7db,
         type: 3}
       propertyPath: m_Name
@@ -1216,6 +1207,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5300873241077971884}
     m_Modifications:
+    - target: {fileID: 1998768329779527726, guid: 2b5069ca477c9c54799e7c7d5cc2b7db,
+        type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 5300873242520235745}
     - target: {fileID: 5501631460375838178, guid: 2b5069ca477c9c54799e7c7d5cc2b7db,
         type: 3}
       propertyPath: m_Name
@@ -1303,6 +1299,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5300873241550715780}
     m_Modifications:
+    - target: {fileID: 1998768329779527726, guid: 2b5069ca477c9c54799e7c7d5cc2b7db,
+        type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 5300873242520235745}
     - target: {fileID: 5501631460375838178, guid: 2b5069ca477c9c54799e7c7d5cc2b7db,
         type: 3}
       propertyPath: m_Name
@@ -1390,6 +1391,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5300873241584229039}
     m_Modifications:
+    - target: {fileID: 1998768329779527726, guid: 2b5069ca477c9c54799e7c7d5cc2b7db,
+        type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 5300873242520235745}
     - target: {fileID: 5501631460375838178, guid: 2b5069ca477c9c54799e7c7d5cc2b7db,
         type: 3}
       propertyPath: m_Name
