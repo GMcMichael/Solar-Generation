@@ -11,8 +11,7 @@ public class SolarSystemGenerator : MonoBehaviour
     private float rotateStep = 1;
     [SerializeField]
     private bool disableOrbits = false;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         planets = SolarSystemSettings.getPlanets();

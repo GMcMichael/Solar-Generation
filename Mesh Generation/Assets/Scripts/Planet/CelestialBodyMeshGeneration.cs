@@ -10,7 +10,7 @@ public class CelestialBodyMeshGeneration : MonoBehaviour
     Mesh mesh;
     MeshCollider meshCollider;
     MeshRenderer meshRenderer;
-    public int radius;
+    private int radius;
     private List<List<int>> TriangleLayers = new List<List<int>>();
     private List<List<Vector3>> VertexLayers = new List<List<Vector3>>();
 
@@ -176,5 +176,9 @@ public class CelestialBodyMeshGeneration : MonoBehaviour
     public Vector3[] GetVertices()
     {
         return LandVertices.ToArray();
+    }
+
+    public void setRadius(int _radius) {
+        radius = _radius;
     }
 }

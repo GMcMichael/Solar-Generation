@@ -10,18 +10,22 @@ public class StorageBuilding : MonoBehaviour
     private int[] slotTypes;
     private int slotMaximum = 999;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    //Called from external scripts and returns an array with the amount and type
+    public int[] GetResource(int slot, int maxAmount) {
+        int[] data = new int[2];
+        int amount = storage[slot];
+        if(amount <= maxAmount) {
+            storage[slot] = 0;
+            data[0] = amount;
+        } else {
+            storage[slot] -= maxAmount;
+            data[0] = maxAmount;
+        }
+            data[1] = slotTypes[slot];
+        return data;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //Called from external scripts and gets sent the type an amount, return the amount that can't be added
     public int AddResource(int type, int amount) {
         if(ContainsType(type)) {
             for(int i = 0; i < slotTypes.Length; i++) {
@@ -32,7 +36,7 @@ public class StorageBuilding : MonoBehaviour
             for(int i = 0; i < slotTypes.Length; i++) {
                 if(storage[i] == 0) {
                     amount = DepositResource(i, type, amount);
-                    slotType[i] = type;
+                    slotTypes[i] = type;
                 }
                 if(amount == 0) break;
             }
@@ -46,15 +50,6 @@ public class StorageBuilding : MonoBehaviour
         if(remaning != 0) {
             storage[index] = slotMaximum;
             return remaning;
-        }
-        return 0;
-    }
-
-    public int GetResource(int type = -1, int slot = -1, int maxAmount) {
-        if(slot >= 0) {
-            //get resources from slot
-        } else if(type >= 0) {
-            //get resource type
         }
         return 0;
     }
