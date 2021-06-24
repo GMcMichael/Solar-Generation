@@ -59,7 +59,7 @@ public class SolarSystemSettings : MonoBehaviour
 
     private void GenerateSeed() {//for seep copy the getPlanets script, then have get planets just decrypt the seed
         //seed = the number of planets, the dist, the speed, then recursevly for each planet: the radius, speed and dist
-        int numPlanets = getPlanetNum();
+        int numPlanets = 1;//getPlanetNum();//after this is more than one, seed data brakes
         int[] seedData = {
             numPlanets,
             getEvenDistance(numPlanets),
@@ -89,7 +89,7 @@ public class SolarSystemSettings : MonoBehaviour
         for(int i = 0; i < numPlanets; i++)
         {
             GameObject newPlanet = Instantiate(planetPrefab);
-            newPlanet.GetComponent<CelestialBodyMeshGeneration>().setRadius(seedData[3*(i+1)]);
+            newPlanet.GetComponent<CelestialBodyMeshGeneration>().setRadius(seedData[3*(i+1)]);//I think accessing this seed data is wrong or making the array is wrong
             newPlanet.GetComponent<CelestialBodyMeshGeneration>().Randomize();
             newPlanet.GetComponent<PlanetController>().setSpeed(seedData[4*(i+1)]);
             newPlanet.GetComponent<PlanetController>().setDist(seedData[5*(i+1)]);
